@@ -1,4 +1,7 @@
 MotivateMe::Application.routes.draw do
+  resources :goals
+
+
   resources :groups
 
 

@@ -11,12 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417130609) do
+ActiveRecord::Schema.define(:version => 20130417133742) do
+
+  create_table "goals", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "reward"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "goals_users", :id => false, :force => true do |t|
+    t.integer "goal_id"
+    t.integer "user_id"
+  end
+
+  add_index "goals_users", ["goal_id", "user_id"], :name => "index_goals_users_on_goal_id_and_user_id"
 
   create_table "groups", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "reward"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -28,7 +42,27 @@ ActiveRecord::Schema.define(:version => 20130417130609) do
 
   add_index "groups_users", ["group_id", "user_id"], :name => "index_groups_users_on_group_id_and_user_id"
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'bool' for column 'gender'
+  create_table "users", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "date_of_birth"
+    t.string   "gender"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
