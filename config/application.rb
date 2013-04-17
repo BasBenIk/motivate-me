@@ -15,10 +15,10 @@ module MotivateMe
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
       g.test_framework :rspec
-      
-      
-      
-      
+
+
+
+
       g.view_specs false
       g.helper_specs false
     end
@@ -72,5 +72,8 @@ module MotivateMe
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #Set languange to Netherlands
+    config.i18n.default_locale = :nl
   end
 end
