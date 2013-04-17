@@ -1,5 +1,13 @@
 %h3 User
 %p
-  User: #{@user.name}
+  User: #{@user.username}
 %p
-  Email: #{@user.email if @user.email}
+  Email: #{@user.email}
+%p
+  First Name: #{@user.first_name}
+%p
+  Last Name: #{@user.last_name}
+%p
+  Gender: #{@user.gender if @user.gender}
+%p
+  Birthday: #{@user.date_of_birth if @user.date_of_birth}
