@@ -1,4 +1,7 @@
 MotivateMe::Application.routes.draw do
+  resources :groups
+
+
   authenticated :user do
     root :to => 'home#index'
   end
