@@ -3,7 +3,6 @@ class CreateGroups < ActiveRecord::Migration
     create_table :groups do |t|
       t.string :title
       t.text :description
-      t.string :reward
 
       t.timestamps
 
