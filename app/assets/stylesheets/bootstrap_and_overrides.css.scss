@@ -1,3 +1,9 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+h1,h2,h3,h4,h5{
+  .btn{
+    float:right;
+  }
+}

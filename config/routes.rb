@@ -1,4 +1,6 @@
 MotivateMe::Application.routes.draw do
+  resources :friendships
+
   resources :goals
 
 
