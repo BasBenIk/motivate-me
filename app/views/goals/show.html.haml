@@ -9,6 +9,10 @@
 %p
   %b Reward:
   = @goal.reward
+%p
+  %b Users:
+  - @goal.users.each do |user|
+    = user.username
 
 = link_to 'Edit', edit_goal_path(@goal)
 \|

@@ -1,10 +1,11 @@
 %h1 Listing goals
 
-%table
+%table.table.table-striped
   %tr
     %th Title
     %th Description
     %th Reward
+    %th Users
     %th
     %th
     %th
@@ -14,6 +15,7 @@
       %td= goal.title
       %td= goal.description
       %td= goal.reward
+      %td= goal.users.map{|u| u.username }.join(" , ")
       %td= link_to 'Show', goal
       %td= link_to 'Edit', edit_goal_path(goal)
       %td= link_to 'Destroy', goal, :method => :delete, :data => { :confirm => 'Are you sure?' }
