@@ -3,11 +3,14 @@ gem 'rails', '3.2.13'
 gem "thin", ">= 1.5.0"
 
 gem 'jquery-rails'
-gem "haml-rails", ">= 0.4"
+gem 'jquery-ui-rails'
+gem 'prettyphoto-rails'
 gem "bootstrap-sass", ">= 2.3.0.0"
+gem "font-awesome-rails"
+
+gem "haml-rails", ">= 0.4"
 gem "devise", ">= 2.2.3"
 gem "simple_form", ">= 2.1.0"
-
 gem "figaro", ">= 0.6.3"
 
 group :assets do
