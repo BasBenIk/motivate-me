@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
-    if params[:friend_id] == current_user.id
+    if params[:friend_id] == current_user.id.to_s
       flash[:error] = "Forever alone."
       redirect_to users_path
     else
