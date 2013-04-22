@@ -27,6 +27,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
+    @friends = current_user.friends
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,6 +44,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
+    @group.owner = current_user
 
     respond_to do |format|
       if @group.save

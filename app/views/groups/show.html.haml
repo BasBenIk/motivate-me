@@ -6,6 +6,12 @@
 %p
   %b Description:
   = @group.description
+%p
+  %b Owner:
+  = @group.owner.username
+%p
+  %b Members:
+  = @group.users.collect(&:username).join(', ')
 
 = link_to 'Edit', edit_group_path(@group)
 \|
