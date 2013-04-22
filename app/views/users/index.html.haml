@@ -10,13 +10,16 @@
 .container.users
   .row
     .span12
-      %table
-        %thead
+      %table.table.table-striped
+        %tr
+          %th Gebruikersnaam
+          %th Voornaam
+          %th Achternaam
+          %th
+
+        -@users.each do |user|
           %tr
-            %th{width: 200} Gebruikersnaam
-            %th
-        %tbody
-          -@users.each do |user|
-            %tr
-              %td= link_to user.username, user
-              %td= link_to "(Als vriend toevoegen)", friendships_path(:friend_id => user), :method => :post
+            %td= link_to user.username, user
+            %td= user.first_name
+            %td= user.last_name
+            %td= link_to "(Als vriend toevoegen)", friendships_path(:friend_id => user), :method => :post

@@ -1,28 +1,40 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-signin.page-title-icon
+        %h2 Bewerken /
+        %p Pas je account gegevens aan
+/ Users container
+.container.users
+  .row
+    .span8.offset4
+      %h2
+        Edit #{resource_name.to_s.humanize}
 
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f|
-  = f.error_notification
-  = display_base_errors resource
-  = f.input :username, disabled: true, hint: 'You cannot change your username.', :required => true
-  = f.input :first_name, :required => true
-  = f.input :last_name, :required => true
-  = f.input :gender, collection: [:male, :female]
-  = f.input :date_of_birth, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year]
-  = f.input :email, :required => true
-  = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
-  = f.input :password_confirmation, :required => false
-  = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
-  = f.button :submit, 'Update', :class => 'btn-primary'
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f|
+        = f.error_notification
+        = display_base_errors resource
+        = f.input :username, disabled: true, hint: 'You cannot change your username.', :required => true
+        = f.input :first_name, :required => true
+        = f.input :last_name, :required => true
+        = f.input :gender, collection: [:male, :female]
+        = f.input :date_of_birth, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year]
+        = f.input :email, :required => true
+        = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
+        = f.input :password_confirmation, :required => false
+        = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+        = f.button :submit, 'Update', :class => 'btn-primary'
 
-%h3 Groups
-- unless @user.groups.empty?
-  - @user.groups.each do |group|
-    = group.name
-- else
-  %p Nog geen lid van een groep
+      %h3 Groups
+      - unless @user.groups.empty?
+        - @user.groups.each do |group|
+          = group.name
+      - else
+        %p Nog geen lid van een groep
 
-%h3 Cancel my account
-%p
-  Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
-= link_to "Back", :back
+      %h3 Cancel my account
+      %p
+        Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
+      = link_to "Back", :back

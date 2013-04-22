@@ -1,25 +1,34 @@
-%h1 Listing goals
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-flag.page-title-icon
+        %h2 Goals /
+        %p Een lijst van alle goals
+        =link_to new_goal_path, class: "btn btn-custom" do
+          %i.icon-plus
+          =" Nieuwe goal"
+/ Users container
+.container.users
+  .row
+    .span12
+      %table.table.table-striped
+        %tr
+          %th Title
+          %th Description
+          %th Reward
+          %th Users
+          %th
+          %th
+          %th
 
-%table.table.table-striped
-  %tr
-    %th Title
-    %th Description
-    %th Reward
-    %th Users
-    %th
-    %th
-    %th
-
-  - @goals.each do |goal|
-    %tr
-      %td= goal.title
-      %td= goal.description
-      %td= goal.reward
-      %td= goal.users.map{|u| u.username }.join(" , ")
-      %td= link_to 'Show', goal
-      %td= link_to 'Edit', edit_goal_path(goal)
-      %td= link_to 'Destroy', goal, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Goal', new_goal_path
+        - @goals.each do |goal|
+          %tr
+            %td= goal.title
+            %td= goal.description
+            %td= goal.reward
+            %td= goal.users.map{|u| u.username }.join(" , ")
+            %td= link_to 'Show', goal
+            %td= link_to 'Edit', edit_goal_path(goal)
+            %td= link_to 'Destroy', goal, :method => :delete, :data => { :confirm => 'Are you sure?' }
