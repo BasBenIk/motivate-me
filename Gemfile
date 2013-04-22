@@ -7,6 +7,7 @@ gem "haml-rails", ">= 0.4"
 gem "bootstrap-sass", ">= 2.3.0.0"
 gem "devise", ">= 2.2.3"
 gem "simple_form", ">= 2.1.0"
+gem 'public_activity'
 
 gem "figaro", ">= 0.6.3"
 
