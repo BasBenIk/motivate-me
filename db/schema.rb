@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130422090308) do
+ActiveRecord::Schema.define(:version => 20130422095416) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -30,8 +29,6 @@ ActiveRecord::Schema.define(:version => 20130422090308) do
   add_index "activities", ["owner_id", "owner_type"], :name => "index_activities_on_owner_id_and_owner_type"
   add_index "activities", ["recipient_id", "recipient_type"], :name => "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], :name => "index_activities_on_trackable_id_and_trackable_type"
-=======
-ActiveRecord::Schema.define(:version => 20130422095416) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -39,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20130422095416) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
->>>>>>> 5564452af978cdee38ba3d9d3c438b0b0499d30e
 
   create_table "goals", :force => true do |t|
     t.string   "title"
