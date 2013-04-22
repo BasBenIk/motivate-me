@@ -1,4 +1,139 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.username, user}
+/ Slider
+.slider
+  .container
+    .row
+      .span10.offset1
+        .flexslider
+          %ul.slides
+            %li{"data-thumb" => "/assets/slider/1.jpg"}
+              =image_tag ("slider/1.jpg")
+              %p.flex-caption Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur.
+            %li{"data-thumb" => "/assets/slider/2.jpg"}
+              =image_tag ("slider/2.jpg")
+              %p.flex-caption Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            %li{"data-thumb" => "/assets/slider/5.jpg"}
+              =image_tag ("slider/5.jpg")
+              %p.flex-caption Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur.
+            %li{"data-thumb" => "/assets/slider/6.jpg"}
+              =image_tag ("slider/6.jpg")
+              %p.flex-caption Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+/ Site Description
+.presentation.container
+  %h2
+    We are
+    = succeed "," do
+      %span.violet Andia
+    a super cool design agency.
+  %p We design beautiful websites, logos and prints. Your project is safe with us.
+
+/ Services
+.what-we-do.container
+  .row
+    .service.span3
+      .icon-awesome
+        %i.icon-eye-open
+      %h4 Beautiful Websites
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...
+      %a{:href => "services.html"} Read more
+    .service.span3
+      .icon-awesome
+        %i.icon-table
+      %h4 Responsive Layout
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...
+      %a{:href => "services.html"} Read more
+    .service.span3
+      .icon-awesome
+        %i.icon-magic
+      %h4 Awesome Logos
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...
+      %a{:href => "services.html"} Read more
+    .service.span3
+      .icon-awesome
+        %i.icon-print
+      %h4 High Res Prints
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...
+      %a{:href => "services.html"} Read more
+
+/ Latest Work
+.portfolio.container
+  .portfolio-title
+    %h3 Our Latest Work
+  .row
+    .work.span3
+      = image_tag "portfolio/work1.jpg"
+      %h4 Lorem Website
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...
+      .icon-awesome
+        = link_to image_path("portfolio/work1.jpg"), :rel => "prettyPhoto" do
+          %i.icon-search
+        %a{:href => "portfolio.html"}
+          %i.icon-link
+    .work.span3
+      = image_tag "portfolio/work2.jpg"
+      %h4 Ipsum Logo
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...
+      .icon-awesome
+        = link_to image_path("portfolio/work2.jpg"), :rel => "prettyPhoto" do
+          %i.icon-search
+        %a{:href => "portfolio.html"}
+          %i.icon-link
+    .work.span3
+      = image_tag "portfolio/work3.jpg"
+      %h4 Dolor Prints
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...
+      .icon-awesome
+        = link_to image_path("portfolio/work3.jpg"), :rel => "prettyPhoto" do
+          %i.icon-search
+        %a{:href => "portfolio.html"}
+          %i.icon-link
+    .work.span3
+      = image_tag "portfolio/work4.jpg"
+      %h4 Sit Amet Website
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...
+      .icon-awesome
+        = link_to image_path("portfolio/work4.jpg"), :rel => "prettyPhoto" do
+          %i.icon-search
+        %a{:href => "portfolio.html"}
+          %i.icon-link
+
+/ Testimonials
+.testimonials.container
+  .testimonials-title
+    %h3 Testimonials
+  .row
+    .testimonial-list.span12
+      .tabbable.tabs-below
+        .tab-content
+          #A.tab-pane.active
+            = image_tag "testimonials/1.jpg"
+            %p
+              "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur..."
+              %br/
+              %span.violet Lorem Ipsum, dolor.co.uk
+          #B.tab-pane
+            = image_tag "testimonials/2.jpg"
+            %p
+              "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat..."
+              %br/
+              %span.violet Minim Veniam, nostrud.com
+          #C.tab-pane
+            = image_tag "testimonials/3.jpg"
+            %p
+              "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur..."
+              %br/
+              %span.violet Lorem Ipsum, dolor.co.uk
+          #D.tab-pane
+            = image_tag "testimonials/1.jpg"
+            %p
+              "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat..."
+              %br/
+              %span.violet Minim Veniam, nostrud.com
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#A"}
+          %li
+            %a{"data-toggle" => "tab", :href => "#B"}
+          %li
+            %a{"data-toggle" => "tab", :href => "#C"}
+          %li
+            %a{"data-toggle" => "tab", :href => "#D"}

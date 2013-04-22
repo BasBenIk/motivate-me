@@ -1,27 +1,47 @@
-%h3
-  Profiel
-  =link_to "Bewerk", edit_user_registration_path, :class => "btn btn-primary"
-%p
-  User: #{@user.username}
-%p
-  Email: #{@user.email}
-%p
-  First Name: #{@user.first_name}
-%p
-  Last Name: #{@user.last_name}
-%p
-  Gender: #{@user.gender if @user.gender}
-%p
-  Birthday: #{@user.date_of_birth if @user.date_of_birth}
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-user.page-title-icon
+        %h2 Profiel /
+        %p Hieronder is profielinformatie te vinden
+        =link_to "Bewerk", edit_user_registration_path, :class => "btn btn-custom"
+/ Profile container
+.container.users
+  .row
+    .span4
+      %h2 Gebruikersinfo
+      %ul
+        %li
+          %strong Username:
+          #{@user.username}
+        %li
+          %strong Email:
+          #{@user.email}
+        %li
+          %strong Voornaam:
+          #{@user.first_name}
+        %li
+          %strong Achternaam:
+          #{@user.last_name}
+        %li
+          %strong Geslacht:
+          #{@user.gender if @user.gender}
+        %li
+          %strong Geboortedatum:
+          #{@user.date_of_birth if @user.date_of_birth}
+    .span4
+      %h2 Vrienden
+      %ul
+        - for friendship in @user.friendships
+          %li
+            = h friendship.friend.username
+            (#{link_to "verwijder", friendship, :method => :delete})
+        %li= link_to "(Vriend toevoegen)", users_path
+    .span4
+      %h2 Heeft je als vriend
+      %ul
+        - for user in @user.inverse_friends
+          %li= h user.username
 
-%h2 Friends
-%ul
-  - for friendship in @user.friendships
-    %li
-      = h friendship.friend.username
-      (#{link_to "remove", friendship, :method => :delete})
-%p= link_to "Find Friends", users_path
-%h2 Friended by Users
-%ul
-  - for user in @user.inverse_friends
-    %li= h user.username
