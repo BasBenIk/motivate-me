@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_filter :has_friends?, :only => [:new,:create]
+
   # GET /groups
   # GET /groups.json
   def index
@@ -25,6 +27,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
+    @friends = current_user.friends
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +44,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
+    @group.owner = current_user
 
     respond_to do |format|
       if @group.save
@@ -78,6 +82,14 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to groups_url }
       format.json { head :no_content }
+    end
+  end
+
+
+  def has_friends?
+    unless current_user.friends.any?
+      flash[:error] = "Je moet vrienden hebben om een groep te starten."
+      redirect_to root_url # halts request cycle
     end
   end
 end

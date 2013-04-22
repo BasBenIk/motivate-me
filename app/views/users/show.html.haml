@@ -1,4 +1,6 @@
-%h3 User
+%h3
+  Profiel
+  =link_to "Bewerk", edit_user_registration_path, :class => "btn btn-primary"
 %p
   User: #{@user.username}
 %p
@@ -11,3 +13,15 @@
   Gender: #{@user.gender if @user.gender}
 %p
   Birthday: #{@user.date_of_birth if @user.date_of_birth}
+
+%h2 Friends
+%ul
+  - for friendship in @user.friendships
+    %li
+      = h friendship.friend.username
+      (#{link_to "remove", friendship, :method => :delete})
+%p= link_to "Find Friends", users_path
+%h2 Friended by Users
+%ul
+  - for user in @user.inverse_friends
+    %li= h user.username

@@ -4,3 +4,4 @@
     %li
       = link_to user.username, user
       signed up #{user.created_at.to_date}
+      = link_to "Add Friend", friendships_path(:friend_id => user), :method => :post
