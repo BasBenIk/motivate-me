@@ -38,19 +38,19 @@
                 %span.icon-bar
                 %span.icon-bar
               %h1
-                %a.brand{:href => "index.html"} Andia - a super cool design agency...
+                = link_to "Motivate Me", root_path
               .nav-collapse.collapse
                 %ul.nav.pull-right
-                  %li.current-page
-                    %a{:href => "index.html"}
+                  %li{:class => active_class("home","index")}
+                    = link_to root_path do
                       %i.icon-home
                       %br/
                       Home
-                  %li
-                    %a{:href => "portfolio.html"}
-                      %i.icon-camera
+                  %li{:class => active_class("users")}
+                    = link_to user_path(current_user) do
+                      %i.icon-user
                       %br/
-                      Portfolio
+                      Profiel
                   %li
                     %a{:href => "#"}
                       %i.icon-comments
@@ -75,33 +75,33 @@
     = yield
   %footer
     .container
-      .row
-        .widget.span3
-          %h4 About Us
-          %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
-          %p
-            %a{:href => ""} Read more...
-        .widget.span3
-          %h4 Latest Tweets
-          .show-tweets
-        .widget.span3
-          %h4 Flickr Photos
-          %ul.flickr-feed
-        .widget.span3
-          %h4 Contact Us
-          %p
-            %i.icon-map-marker
-            Address: Via Principe Amedeo 9, 10100, Torino, TO, Italy
-          %p
-            %i.icon-phone
-            Phone: 0039 333 12 68 347
-          %p
-            %i.icon-user
-            Skype: Andia_Agency
-          %p
-            %i.icon-envelope-alt
-            Email:
-            %a{:href => ""} contact@andia.co.uk
+      / .row
+      /   .widget.span3
+      /     %h4 About Us
+      /     %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+      /     %p
+      /       %a{:href => ""} Read more...
+      /   .widget.span3
+      /     %h4 Latest Tweets
+      /     .show-tweets
+      /   .widget.span3
+      /     %h4 Flickr Photos
+      /     %ul.flickr-feed
+      /   .widget.span3
+      /     %h4 Contact Us
+      /     %p
+      /       %i.icon-map-marker
+      /       Address: Via Principe Amedeo 9, 10100, Torino, TO, Italy
+      /     %p
+      /       %i.icon-phone
+      /       Phone: 0039 333 12 68 347
+      /     %p
+      /       %i.icon-user
+      /       Skype: Andia_Agency
+      /     %p
+      /       %i.icon-envelope-alt
+      /       Email:
+      /       %a{:href => ""} contact@andia.co.uk
       .footer-border
       .row
         .copyright.span4
