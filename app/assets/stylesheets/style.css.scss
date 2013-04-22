@@ -67,6 +67,7 @@ strong {
         padding: 30px 20px 10px 20px;
         color: #5d5d5d;
         text-shadow: none;
+        text-align: center;
       }
       &.current-page a {
         padding-top: 25px;
@@ -535,6 +536,12 @@ footer {
   }
   ul{
     list-style-type: none;
+  }
+  table{
+    margin: 0 auto;
+    thead{
+        text-align: left;
+    }
   }
 }
 
