@@ -1,4 +1,8 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.username, user}
+- unless user_signed_in?
+  %h3 Home
+  - @goals.each do |goal|
+    %h4
+      = goal.title
+    %p
+      = goal.description
+
