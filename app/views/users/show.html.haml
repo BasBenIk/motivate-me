@@ -46,5 +46,5 @@
       %h2 Heeft je als vriend
       %ul
         - for user in @user.inverse_friends
-          %li= h user.username
+          %li=link_to user.username, user
 

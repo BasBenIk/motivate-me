@@ -13,19 +13,39 @@
 .container.content
   .row
     .span12
-      %table.table
-        %tr
-          %th Titel
-          %th Beschrijving
-          %th Leden
+      %h2 Groepen van jou:
+      - unless @my_groups.empty?
+        %table.table
+          %tr
+            %th Titel
+            %th Beschrijving
+            %th Leden
 
-        - @groups.each do |group|
-          %tr{id: "#{group.id}", class: "group"}
-            %td= group.title
-            %td= group.description
-            %td= "Jij, " + group.users.map{|u| u.username }.join(" , ")
-          %tr.separator
-      %br
+          - @my_groups.each do |group|
+            %tr{id: "#{group.id}", class: "group"}
+              %td= group.title
+              %td= group.description
+              %td= "Jij, #{group.users.map{|u| u.username }.join(" , ")}"
+            %tr.separator
+      - else
+        Nog geen eigen groepen klik
+        =link_to "hier", new_group_path
+        om er een aan te maken!
+        %br
+      - unless @other_groups.empty?
+        %h2 Groepen waar je in zit:
+        %table.table
+          %tr
+            %th Titel
+            %th Beschrijving
+            %th Leden
+
+          - @other_groups.each do |group|
+            %tr{id: "#{group.id}", class: "group"}
+              %td= group.title
+              %td= group.description
+              %td= "#{group.owner.username}, #{group.users.map{|u| u.username }.join(" , ")}"
+            %tr.separator
 
 :javascript
   $('table').on('click', 'tr', function() {

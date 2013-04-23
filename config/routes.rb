@@ -6,7 +6,11 @@ MotivateMe::Application.routes.draw do
   devise_for :users
   resources :friendships
   resources :goals
-  resources :groups
+  resources :groups do
+    member do
+      get :leave
+    end
+  end
   resources :activities
   resources :users
 end

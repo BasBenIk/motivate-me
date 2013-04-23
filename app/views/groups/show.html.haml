@@ -16,6 +16,10 @@
           =link_to edit_group_path(@group), class: "btn btn-custom" do
             %i.icon-edit
             =" Bewerken"
+        - else
+          = link_to leave_group_path(@group), :data => { :confirm => 'Weet je het zeker?' }, class: "btn btn-custom" do
+            %i.icon-remove
+            = " Groep verlaten"
 / Users container
 .container.users
   .row
