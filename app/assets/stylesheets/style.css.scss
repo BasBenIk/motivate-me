@@ -1046,6 +1046,12 @@ ul.portfolio-img {
   .tweet_list {
     height: 6em;
   }
+
+  .page-title{
+    .btn, .btn-group{
+      float:none;
+    }
+  }
 }
 
 @media (max-width: 480px) {

@@ -9,24 +9,27 @@
         =link_to new_group_path, class: "btn btn-custom" do
           %i.icon-plus
           =" Nieuwe groep"
-/ Users container
-.container.users
+/ Content
+.container.content
   .row
     .span12
-      %table.table.table-striped
+      %table.table
         %tr
-          %th Title
-          %th Description
-          %th
-          %th
-          %th
+          %th Titel
+          %th Beschrijving
+          %th Leden
 
         - @groups.each do |group|
-          %tr
+          %tr{id: "#{group.id}", class: "group"}
             %td= group.title
             %td= group.description
-            %td= link_to 'Show', group
-            %td= link_to 'Edit', edit_group_path(group)
-            %td= link_to 'Destroy', group, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+            %td= "Jij, " + group.users.map{|u| u.username }.join(" , ")
+          %tr.separator
       %br
+
+:javascript
+  $('table').on('click', 'tr', function() {
+    id = $(this).attr("id");
+    url = "#{groups_url}/"+id;
+    window.location = url;
+  });

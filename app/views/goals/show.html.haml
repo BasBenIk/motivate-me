@@ -1,19 +1,36 @@
-%p#notice= notice
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-flag.page-title-icon
+        %h2 Goal /
+        %p=@goal.title
+        =link_to goals_path, class: "btn btn-custom" do
+          %i.icon-arrow-left
+          =" Terug"
+        = link_to edit_goal_path(@goal), class: "btn btn-custom" do
+          %i.icon-edit
+          = " Bewerken"
+/ Content
+.container.content
+  .row
+    .span12
 
-%p
-  %b Title:
-  = @goal.title
-%p
-  %b Description:
-  = @goal.description
-%p
-  %b Reward:
-  = @goal.reward
-%p
-  %b Users:
-  - @goal.users.each do |user|
-    = user.username
+      %p
+        %b Title:
+        = @goal.title
+      %p
+        %b Description:
+        = @goal.description
+      %p
+        %b Reward:
+        = @goal.reward
+      %p
+        %b Users:
+        - @goal.users.each do |user|
+          = user.username
 
-= link_to 'Edit', edit_goal_path(@goal)
-\|
-= link_to 'Back', goals_path
+      = link_to 'Edit', edit_goal_path(@goal)
+      \|
+      = link_to 'Back', goals_path

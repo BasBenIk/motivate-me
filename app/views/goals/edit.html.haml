@@ -1,7 +1,19 @@
-%h1 Editing goal
-
-= render 'form'
-
-= link_to 'Show', @goal
-\|
-= link_to 'Back', goals_path
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-flag.page-title-icon
+        %h2 Goal Bewerken /
+        %p=@goal.title
+        =link_to @goal, class: "btn btn-custom" do
+          %i.icon-arrow-left
+          =" Terug"
+        =link_to @goal, :method => :delete, :data => { :confirm => 'Weet je het zeker?' }, class: "btn btn-custom" do
+          %i.icon-trash
+          =" Verwijderen"
+/ Content
+.container.content
+  .row
+    .span12
+      = render 'form'

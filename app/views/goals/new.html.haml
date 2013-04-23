@@ -1,5 +1,17 @@
-%h1 New goal
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-flag.page-title-icon
+        %h2 Nieuwe Goal /
+        %p Stel hieronder een persoonlijk goal samen
+        =link_to goals_path, class: "btn btn-custom" do
+          %i.icon-arrow-left
+          =" Terug"
 
-= render 'form'
-
-= link_to 'Back', goals_path
+/ Content
+.container.content
+  .row
+    .span12
+      = render 'form'

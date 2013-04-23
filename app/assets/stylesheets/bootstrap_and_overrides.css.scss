@@ -4,8 +4,9 @@
 @import "font-awesome";
 
 .page-title{
-  .btn{
+  .btn, .btn-group{
     float:right;
+    margin-left: 10px;
   }
 }
 
@@ -25,3 +26,37 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
   -webkit-font-smoothing: antialiased;
 }
+.dropdown-custom > li > a:hover{
+  color: #fff;
+  background-color: #cc3277;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#cc3277), to(#7a1e47));
+  background-image: -moz-linear-gradient(top, #cc3277, #7a1e47);
+  background-image: -ms-linear-gradient(top, #cc3277, #7a1e47);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cc3277), color-stop(100%, #7a1e47));
+  background-image: -webkit-linear-gradient(top, #cc3277, #7a1e47);
+  background-image: -o-linear-gradient(top, #cc3277, #7a1e47);
+  background-image: linear-gradient(#cc3277, #7a1e47);
+}
+
+form{
+  margin:20px;
+}
+.content{
+  padding: 10px;
+}
+
+.group{
+  border-left: 5px solid #9d426b;
+  background: #f8f8f8;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  &:hover{
+    cursor: pointer;
+    background: #9d426b;
+    color: #fff;
+  }
+}
+
+table tr.separator { height: 20px; }
