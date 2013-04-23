@@ -1,9 +1,27 @@
 @import "bootstrap";
-body { padding-top: 60px; }
+// body { padding-top: 60px; }
 @import "bootstrap-responsive";
+@import "font-awesome";
 
-h1,h2,h3,h4,h5{
+.page-title{
   .btn{
     float:right;
   }
+}
+
+.btn-custom {
+  background-color: hsl(333, 60%, 30%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc3277", endColorstr="#7a1e47");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#cc3277), to(#7a1e47));
+  background-image: -moz-linear-gradient(top, #cc3277, #7a1e47);
+  background-image: -ms-linear-gradient(top, #cc3277, #7a1e47);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cc3277), color-stop(100%, #7a1e47));
+  background-image: -webkit-linear-gradient(top, #cc3277, #7a1e47);
+  background-image: -o-linear-gradient(top, #cc3277, #7a1e47);
+  background-image: linear-gradient(#cc3277, #7a1e47);
+  border-color: #7a1e47 #7a1e47 hsl(333, 60%, 25%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
 }

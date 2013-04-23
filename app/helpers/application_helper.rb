@@ -12,4 +12,14 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def active_class(controller, action = nil)
+    if params[:controller] == controller
+      if action == nil  || params[:action] == action
+        "current-page"
+      end
+    else
+      ""
+    end
+  end
+
 end

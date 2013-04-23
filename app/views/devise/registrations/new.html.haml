@@ -1,10 +1,22 @@
-%h2 Sign up
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-  = f.error_notification
-  = display_base_errors resource
-  = f.input :name, :autofocus => true
-  = f.input :email, :required => true
-  = f.input :password, :required => true
-  = f.input :password_confirmation, :required => true
-  = f.button :submit, 'Sign up', :class => 'btn-primary'
-= render "devise/shared/links"
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-signin.page-title-icon
+        %h2 Registreren /
+        %p Maak een nieuw account aan
+/ Users container
+.container.users
+  .row
+    .span8.offset4
+      %h2 Registreren
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+        = f.error_notification
+        = display_base_errors resource
+        = f.input :name, :autofocus => true
+        = f.input :email, :required => true
+        = f.input :password, :required => true
+        = f.input :password_confirmation, :required => true
+        = f.button :submit, 'Reigstreer', :class => 'btn-custom'
+      = render "devise/shared/links"

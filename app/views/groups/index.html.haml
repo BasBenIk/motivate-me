@@ -1,21 +1,32 @@
-%h1 Listing groups
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-group.page-title-icon
+        %h2 Groepen /
+        %p Een lijst van alle groepen
+        =link_to new_group_path, class: "btn btn-custom" do
+          %i.icon-plus
+          =" Nieuwe groep"
+/ Users container
+.container.users
+  .row
+    .span12
+      %table.table.table-striped
+        %tr
+          %th Title
+          %th Description
+          %th
+          %th
+          %th
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th
-    %th
-    %th
+        - @groups.each do |group|
+          %tr
+            %td= group.title
+            %td= group.description
+            %td= link_to 'Show', group
+            %td= link_to 'Edit', edit_group_path(group)
+            %td= link_to 'Destroy', group, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-  - @groups.each do |group|
-    %tr
-      %td= group.title
-      %td= group.description
-      %td= link_to 'Show', group
-      %td= link_to 'Edit', edit_group_path(group)
-      %td= link_to 'Destroy', group, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Group', new_group_path
+      %br
