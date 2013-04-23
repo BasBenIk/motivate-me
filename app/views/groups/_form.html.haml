@@ -1,4 +1,4 @@
-= simple_form_for(@group) do |f|
+= simple_form_for @group, html: { class: "form-horizontal" }, defaults: { input_html: { class: 'span7' } } do |f|
   = f.error_notification
 
   .form-inputs
@@ -7,4 +7,4 @@
     = f.association :users, collection: @friends, label_method: :username, value_method: :id, required: true
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, "Groep Toevoegen", :class => 'btn btn-custom'

@@ -6,29 +6,49 @@
         %i.icon-flag.page-title-icon
         %h2 Goals /
         %p Een lijst van alle goals
-        =link_to new_goal_path, class: "btn btn-custom" do
-          %i.icon-plus
-          =" Nieuwe goal"
-/ Users container
-.container.users
+        .btn-group.pull-right
+          %a.btn.dropdown-toggle.btn-custom{"data-toggle" => "dropdown", :href => "#"}
+            %i.icon-plus
+            =" Nieuwe goal"
+            %span.caret
+          %ul.dropdown-menu.dropdown-custom
+            %li
+              = link_to new_goal_path do
+                %i.icon-user
+                Persoonlijk goal
+            %li
+              %a{href: "#"}
+                %i.icon-group
+                Groeps goal
+/ Content
+.container.content
   .row
     .span12
-      %table.table.table-striped
+      %table.table
         %tr
-          %th Title
-          %th Description
-          %th Reward
-          %th Users
-          %th
-          %th
-          %th
+          %th Icoon
+          %th Tijd
+          %th Titel
+          %th Beschrijving
+          %th Beloning
+          %th Deelnemers
 
         - @goals.each do |goal|
-          %tr
+          %tr{id: "#{goal.id}", class: "group"}
+            %td
+              %i.icon-flag
+            %td
+              1:00:00
             %td= goal.title
             %td= goal.description
             %td= goal.reward
             %td= goal.users.map{|u| u.username }.join(" , ")
-            %td= link_to 'Show', goal
-            %td= link_to 'Edit', edit_goal_path(goal)
-            %td= link_to 'Destroy', goal, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %tr.separator
+      %br
+
+:javascript
+  $('table').on('click', 'tr', function() {
+    id = $(this).attr("id");
+    url = "#{goals_url}/"+id;
+    window.location = url;
+  });

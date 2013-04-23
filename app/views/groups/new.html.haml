@@ -1,5 +1,16 @@
-%h1 New group
-
-= render 'form'
-
-= link_to 'Back', groups_path
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-group.page-title-icon
+        %h2 Nieuwe Groep /
+        %p Een nieuwe groep aanmaken
+        = link_to groups_path, class: "btn btn-custom" do
+          %i.icon-arrow-left
+          Terug
+/ Container
+.container.content
+  .row
+    .span12
+      = render 'form'

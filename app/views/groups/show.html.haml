@@ -1,18 +1,34 @@
-%p#notice= notice
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-group.page-title-icon
+        %h2 Groep /
+        %p= @group.title
+        = link_to groups_path, class: "btn btn-custom" do
+          %i.icon-arrow-left
+          = " Terug"
+        =link_to edit_group_path(@group), class: "btn btn-custom" do
+          %i.icon-edit
+          =" Bewerken"
+/ Users container
+.container.users
+  .row
+    .span12
+      %p
+        %b Title:
+        = @group.title
+      %p
+        %b Description:
+        = @group.description
+      %p
+        %b Owner:
+        = @group.owner.username
+      %p
+        %b Members:
+        = @group.users.collect(&:username).join(', ')
 
-%p
-  %b Title:
-  = @group.title
-%p
-  %b Description:
-  = @group.description
-%p
-  %b Owner:
-  = @group.owner.username
-%p
-  %b Members:
-  = @group.users.collect(&:username).join(', ')
-
-= link_to 'Edit', edit_group_path(@group)
-\|
-= link_to 'Back', groups_path
+      = link_to 'Edit', edit_group_path(@group)
+      \|
+      = link_to 'Back', groups_path

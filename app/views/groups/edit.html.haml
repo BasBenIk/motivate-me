@@ -1,7 +1,19 @@
-%h1 Editing group
-
-= render 'form'
-
-= link_to 'Show', @group
-\|
-= link_to 'Back', groups_path
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-group.page-title-icon
+        %h2 Groep Bewerken /
+        %p= @group.title
+        =link_to groups_path, class: "btn btn-custom" do
+          %i.icon-arrow-left
+          =" Terug"
+        =link_to @group, :method => :delete, :data => { :confirm => 'Weet je het zeker?' }, class: "btn btn-custom" do
+          %i.icon-trash
+          =" Verwijderen"
+/ Content
+.container.content
+  .row
+    .span12
+      = render 'form'
