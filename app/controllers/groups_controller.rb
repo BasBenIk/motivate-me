@@ -90,7 +90,7 @@ class GroupsController < ApplicationController
   def has_friends?
     unless current_user.friends.any?
       flash[:error] = "Je moet vrienden hebben om een groep te starten."
-      redirect_to root_url # halts request cycle
+      redirect_to users_path # halts request cycle
     end
   end
 end

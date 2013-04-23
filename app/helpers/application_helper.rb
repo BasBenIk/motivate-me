@@ -22,4 +22,13 @@ module ApplicationHelper
     end
   end
 
+  def has_rights?(user = null)
+    if current_user == user || current_user.admin
+      return true
+    else
+      return false
+    end
+  end
+
+
 end

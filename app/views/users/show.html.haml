@@ -6,7 +6,8 @@
         %i.icon-user.page-title-icon
         %h2 Profiel /
         %p Hieronder is profielinformatie te vinden
-        =link_to "Bewerk", edit_user_registration_path, :class => "btn btn-custom"
+        - if has_rights?(@user)
+          =link_to "Bewerk", edit_user_registration_path, :class => "btn btn-custom"
 / Profile container
 .container.users
   .row
@@ -15,6 +16,8 @@
       %ul
         %li
           %strong Username:
+          - if @user.admin
+            %i.icon-star
           #{@user.username}
         %li
           %strong Email:
