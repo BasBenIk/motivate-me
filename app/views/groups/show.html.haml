@@ -4,14 +4,18 @@
     .row
       .span12
         %i.icon-group.page-title-icon
-        %h2 Groep /
-        %p= @group.title
+        %h2= @group.title + " /"
+        %p
+          %i.icon-star-empty
+          %strong= "#{@group.owner.username}, "
+          = @group.users.collect(&:username).join(', ')
         = link_to groups_path, class: "btn btn-custom" do
           %i.icon-arrow-left
           = " Terug"
-        =link_to edit_group_path(@group), class: "btn btn-custom" do
-          %i.icon-edit
-          =" Bewerken"
+        - if current_user == @group.owner || current_user.admin
+          =link_to edit_group_path(@group), class: "btn btn-custom" do
+            %i.icon-edit
+            =" Bewerken"
 / Users container
 .container.users
   .row

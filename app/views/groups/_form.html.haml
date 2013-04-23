@@ -2,9 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :title, required: true
-    = f.input :description, required: true
-    = f.association :users, collection: @friends, label_method: :username, value_method: :id, required: true
+    = f.input :title, required: true, placeholder: "Mijn vrienden", label: "Titel"
+    = f.input :description, required: true, input_html: {rows: 5}, placeholder: "Best friends forever!", label: "Beschrijving"
+    = f.association :users, collection: @friends, label_method: :username, value_method: :id, required: true, label: "Deelnemers"
 
   .form-actions
     = f.button :submit, "Groep Toevoegen", :class => 'btn btn-custom'
