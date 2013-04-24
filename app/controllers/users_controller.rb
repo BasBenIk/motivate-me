@@ -13,4 +13,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def goals
+    @user = User.find(params[:user_id])
+    @goals = @user.goals
+  end
+
 end

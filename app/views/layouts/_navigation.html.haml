@@ -17,7 +17,7 @@
                   %br/
                   Home
               - if user_signed_in?
-                %li{:class => active_class("users")}
+                %li{:class => active_class("users","show")}
                   = link_to user_path(current_user) do
                     %i.icon-user
                     %br/
@@ -27,8 +27,8 @@
                     %i.icon-group
                     %br/
                     Groepen
-                %li{:class => active_class("goals")}
-                  = link_to goals_path do
+                %li{:class => active_class("goals"), :class => active_class("users","goals")}
+                  = link_to user_goals_path(current_user) do
                     %i.icon-flag
                     %br/
                     Goals
