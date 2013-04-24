@@ -16,8 +16,29 @@
 .container.content
   .row
     .span12.center
-      %h3 Beschrijving:
-      %p= @goal.description
+      .what-we-do.container
+        .row
+          .service.span3
+            .icon-awesome
+              %i.icon-trophy
+            %h4 Beloning
+            %p= @goal.description
+          .service.span3
+            .icon-awesome
+              %i.icon-group
+            %h4 Aantal deelnemers
+            %p=@goal.users.count
+          .service.span3
+            .icon-awesome
+              %i.icon-thumbs-up
+            %h4 Aantal voltooid
+            %p= @goal.completions.count
+          .service.span3
+            .icon-awesome
+              %i.icon-time
+            %h4 Resterende tijd
+            %p 1:00:00
+
       %h3 Deelnemers:
   .row
     .span12
@@ -33,28 +54,13 @@
                   %i.icon-ok
               %li.name
                 =link_to user.username, user
-              %li.link
-                - unless @goal.complete(user)
-                  = link_to completions_path(:user_id => user, :group_id => @group, :goal_id => @goal), :method => :post do
-                    %i.icon-ok-sign
-                    Goedkeuren
-                - else
-                  = link_to completion_path(user.completion(@goal), :user_id => user, :group_id => @group, :goal_id => @goal), :method => :delete do
-                    %i.icon-minus-sign
-                    Goedkeuring intrekken
-      %p
-        %b Reward:
-        = @goal.reward
-      %p
-        %b Users:
-        %ul
-        - @goal.users.each do |user|
-          %li
-            = user.username
-            - unless @goal.complete(user)
-              = link_to "approve!", completions_path(:user_id => user, :group_id => @group, :goal_id => @goal), :method => :post
-            - else
-              = link_to "delete", completion_path(user.completion(@goal), :user_id => user, :group_id => @group, :goal_id => @goal), :method => :delete
-      = link_to 'Edit', edit_goal_path(@goal)
-      \|
-      = link_to 'Back', goals_path
+              - unless current_user == user
+                %li.link
+                  - unless @goal.complete(user)
+                    = link_to completions_path(:user_id => user, :group_id => @group, :goal_id => @goal), :method => :post do
+                      %i.icon-ok-sign
+                      Goedkeuren
+                  - else
+                    = link_to completion_path(user.completion(@goal), :user_id => user, :group_id => @group, :goal_id => @goal), :method => :delete do
+                      %i.icon-minus-sign
+                      Goedkeuring intrekken

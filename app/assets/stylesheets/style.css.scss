@@ -146,7 +146,7 @@ strong {
 .what-we-do {
   margin-top: 50px;
   .service {
-    padding-bottom: 23px;
+    padding: 10px 0 0;
     background: #f8f8f8;
     border-bottom: 2px solid #9d426b;
     &:hover {
@@ -509,7 +509,7 @@ footer {
     margin-left: 5px;
     font-size: 14px;
     font-style: italic;
-    vertical-align: middle;
+    vertical-align: -5px;
   }
 }
 
@@ -1052,8 +1052,24 @@ ul.portfolio-img {
       float:none;
     }
   }
-}
 
+  ul.goal-users{
+    li.user{
+      padding: 10px;
+      margin: 10px 10px;
+      ul{
+        margin: 0;
+        li{
+          display: inline-block;
+        }
+        li.link{
+          margin: 10px 0 0;
+          float: none;
+        }
+      }
+    }
+  }
+}
 @media (max-width: 480px) {
   .tweet_list {
     height: 10em;
