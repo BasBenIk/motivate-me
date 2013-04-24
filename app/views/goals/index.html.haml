@@ -6,20 +6,9 @@
         %i.icon-flag.page-title-icon
         %h2 Goals /
         %p Een lijst van alle goals
-        .btn-group.pull-right
-          %a.btn.dropdown-toggle.btn-custom{"data-toggle" => "dropdown", :href => "#"}
-            %i.icon-plus
-            =" Nieuwe goal"
-            %span.caret
-          %ul.dropdown-menu.dropdown-custom
-            %li
-              = link_to new_goal_path do
-                %i.icon-user
-                Persoonlijk goal
-            %li
-              %a{href: "#"}
-                %i.icon-group
-                Groeps goal
+        = link_to new_group_goal_path(@group), class: "btn btn-custom" do
+          %i.icon-plus
+          = " Nieuwe goal"
 / Content
 .container.content
   .row
@@ -31,7 +20,7 @@
           %th Titel
           %th Beschrijving
           %th Beloning
-          %th Deelnemers
+          %th Groep
 
         - @goals.each do |goal|
           %tr{id: "#{goal.id}", class: "group"}
@@ -42,7 +31,7 @@
             %td= goal.title
             %td= goal.description
             %td= goal.reward
-            %td= goal.users.map{|u| u.username }.join(" , ")
+            %td= goal.group.try(:title)
           %tr.separator
       %br
 

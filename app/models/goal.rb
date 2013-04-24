@@ -3,6 +3,6 @@ class Goal < ActiveRecord::Base
   tracked owner: ->(controller, model) { controller && controller.current_user }
 
   attr_accessible :description, :reward, :title
-  has_many :users, :through => :groups
-  belongs_to :groups
+  has_many :users, :through => :group
+  belongs_to :group
 end

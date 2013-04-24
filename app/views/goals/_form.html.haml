@@ -1,4 +1,4 @@
-= simple_form_for @goal, html: { class: "form-horizontal" }, defaults: { input_html: { class: 'span7' } }  do |f|
+= simple_form_for [@group, @goal], html: { class: "form-horizontal" }, defaults: { input_html: { class: 'span7' } }  do |f|
   = f.error_notification
 
   .form-inputs

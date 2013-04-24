@@ -25,7 +25,9 @@ class GoalsController < ApplicationController
   # GET /goals/new
   # GET /goals/new.json
   def new
-    @goal = current_user.goals.new
+    @goal = @group.goals.new
+    # @goal = Goal.new
+    # @goal.group = @group
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,12 +43,12 @@ class GoalsController < ApplicationController
   # POST /goals
   # POST /goals.json
   def create
-    @goal = Goal.new(params[:goal])
-    @goal.users << current_user
+    # @goal = Goal.new(params[:goal])
+    @goal = @group.goals.new(params[:goal])
 
     respond_to do |format|
       if @goal.save
-        format.html { redirect_to group_goals_path(@group, @goal), notice: 'Goal was successfully created.' }
+        format.html { redirect_to group_goal_path(@group, @goal), notice: 'Goal was successfully created.' }
         format.json { render json: @goal, status: :created, location: @goal }
       else
         format.html { render action: "new" }

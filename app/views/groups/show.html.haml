@@ -36,6 +36,9 @@
       %p
         %b Members:
         = @group.users.collect(&:username).join(', ')
+      = link_to group_goals_path(@group), class: "btn btn-custom" do
+        %i.icon-flag
+        = " Goals"
 
       = link_to 'Edit', edit_group_path(@group)
       \|
