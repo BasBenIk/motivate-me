@@ -4,10 +4,21 @@
     .row
       .span12
         %i.icon-user.page-title-icon
-        %h2 Profiel /
+        %h2 #{@user.username} /
         %p Hieronder is profielinformatie te vinden
         - if has_rights?(@user)
-          =link_to "Bewerk", edit_user_registration_path, :class => "btn btn-custom"
+          =link_to edit_user_registration_path, :class => "btn btn-custom" do
+            %i.icon-edit
+            Bewerk profiel
+        - unless current_user == @user
+          - unless current_user.friends.include?(@user)
+            =link_to friendships_path(:friend_id => @user), :method => :post, :class => "btn btn-custom" do
+              %i.icon-heart
+              Toevoegen als vriend
+          - else
+            =link_to @friendship, :method => :delete, :class => "btn btn-custom" do
+              %i.icon-heart-empty
+              Verwijderen als vriend
 / Profile container
 .container.users
   .row
@@ -39,9 +50,13 @@
       %ul
         - for friendship in @user.friendships
           %li
-            = h friendship.friend.username
-            (#{link_to "verwijder", friendship, :method => :delete})
-        %li= link_to "(Vriend toevoegen)", users_path
+            = link_to friendship.friend.username, friendship.friend
+            \ -
+            -if current_user == @user
+              (#{link_to "verwijder", friendship, :method => :delete})
+        - if current_user == @user
+          %li
+            %strong= link_to "(Vriend toevoegen)", users_path
     .span4
       %h2 Heeft je als vriend
       %ul
