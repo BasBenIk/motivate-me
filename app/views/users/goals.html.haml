@@ -1,0 +1,41 @@
+/ Page Title
+.page-title
+  .container
+    .row
+      .span12
+        %i.icon-flag.page-title-icon
+        %h2 #{current_user.username} /
+        %p Goals
+/ Content
+.container.content
+  .row
+    .span12
+      %table.table
+        %tr
+          %th Icoon
+          %th Tijd
+          %th Titel
+          %th Beschrijving
+          %th Beloning
+          %th Groep
+
+        - @goals.each do |goal|
+          %tr{id: "#{goal.id}", class: "group", "data-group" => "#{goal.group.id}"}
+            %td
+              %i.icon-flag
+            %td
+              1:00:00
+            %td= goal.title
+            %td= goal.description
+            %td= goal.reward
+            %td= goal.group.try(:title)
+          %tr.separator
+      %br
+
+:javascript
+  $('table').on('click', 'tr', function() {
+    group_id = $(this).attr("data-group");
+    id = $(this).attr("id");
+    url = "#{groups_url}/"+group_id+"/goals/"+id;
+    window.location = url;
+  });
