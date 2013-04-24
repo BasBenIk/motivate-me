@@ -5,10 +5,7 @@
       .span12
         %i.icon-group.page-title-icon
         %h2= @group.title + " /"
-        %p
-          %i.icon-star-empty
-          %strong= "#{@group.owner.username}, "
-          = @group.users.collect(&:username).join(', ')
+        %p= @group.users.collect(&:username).join(', ')
         = link_to groups_path, class: "btn btn-custom" do
           %i.icon-arrow-left
           = " Terug"
@@ -39,7 +36,3 @@
       = link_to group_goals_path(@group), class: "btn btn-custom" do
         %i.icon-flag
         = " Goals"
-
-      = link_to 'Edit', edit_group_path(@group)
-      \|
-      = link_to 'Back', groups_path

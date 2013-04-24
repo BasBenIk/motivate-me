@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @my_groups = Group.where(:owner_id => current_user.id)
-    @other_groups = current_user.groups
+    @other_groups = current_user.groups.reject{|g| g.owner_id = current_user.id}
 
     respond_to do |format|
       format.html # index.html.erb

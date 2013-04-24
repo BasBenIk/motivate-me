@@ -25,7 +25,7 @@
             %tr{id: "#{group.id}", class: "group"}
               %td= group.title
               %td= group.description
-              %td= "Jij, #{group.users.map{|u| u.username }.join(" , ")}"
+              %td= "#{group.users.map{|u| u.username }.join(" , ")}"
             %tr.separator
       - else
         Nog geen eigen groepen klik
