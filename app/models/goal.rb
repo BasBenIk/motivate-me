@@ -4,5 +4,10 @@ class Goal < ActiveRecord::Base
 
   attr_accessible :description, :reward, :title
   has_many :users, :through => :group
+  has_many :completions
   belongs_to :group
+
+  def complete(user)
+    completions.map{|c| c.user == user}.include?(true)
+  end
 end

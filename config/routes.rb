@@ -5,6 +5,7 @@ MotivateMe::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :friendships
+  resources :completions
   resources :goals
   resources :groups do
     resources :goals

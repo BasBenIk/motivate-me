@@ -11,10 +11,15 @@ class User < ActiveRecord::Base
   has_many :goals, :through => :groups
   has_many :friendships
   has_many :friends , :through => :friendships
+  has_many :completions
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def completion(goal)
+    completions.detect{|c| c.goal == goal}
   end
 end

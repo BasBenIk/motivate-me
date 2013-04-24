@@ -30,8 +30,12 @@
         %b Users:
         %ul
         - @goal.users.each do |user|
-          %li= user.username
-
+          %li
+            = user.username
+            - unless @goal.complete(user)
+              = link_to "approve!", completions_path(:user_id => user, :group_id => @group, :goal_id => @goal), :method => :post
+            - else
+              = link_to "delete", completion_path(user.completion(@goal), :user_id => user, :group_id => @group, :goal_id => @goal), :method => :delete
       = link_to 'Edit', edit_goal_path(@goal)
       \|
       = link_to 'Back', goals_path
