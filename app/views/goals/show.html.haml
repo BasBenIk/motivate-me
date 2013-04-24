@@ -4,25 +4,44 @@
     .row
       .span12
         %i.icon-flag.page-title-icon
-        %h2 Goal /
+        %h2= link_to @group.title + " /", @group
         %p=@goal.title
-        =link_to goals_path, class: "btn btn-custom" do
+        =link_to group_goals_path(@group), class: "btn btn-custom" do
           %i.icon-arrow-left
           =" Terug"
-        = link_to edit_goal_path(@goal), class: "btn btn-custom" do
+        = link_to edit_group_goal_path(@group, @goal), class: "btn btn-custom" do
           %i.icon-edit
-          = " Bewerken"
+          = " Goal bewerken"
 / Content
 .container.content
   .row
+    .span12.center
+      %h3 Beschrijving:
+      %p= @goal.description
+      %h3 Deelnemers:
+  .row
     .span12
-
-      %p
-        %b Title:
-        = @goal.title
-      %p
-        %b Description:
-        = @goal.description
+      %ul.goal-users
+        - @goal.users.each do |user|
+          %li.user
+            %ul
+              %li
+                Behaald:
+                - unless @goal.complete(user)
+                  %i.icon-remove
+                - else
+                  %i.icon-ok
+              %li.name
+                =link_to user.username, user
+              %li.link
+                - unless @goal.complete(user)
+                  = link_to completions_path(:user_id => user, :group_id => @group, :goal_id => @goal), :method => :post do
+                    %i.icon-ok-sign
+                    Goedkeuren
+                - else
+                  = link_to completion_path(user.completion(@goal), :user_id => user, :group_id => @group, :goal_id => @goal), :method => :delete do
+                    %i.icon-minus-sign
+                    Goedkeuring intrekken
       %p
         %b Reward:
         = @goal.reward

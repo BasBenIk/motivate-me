@@ -29,10 +29,12 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @group = Group.find(params[:id])
-
     unless @group.owner == current_user || @group.users.include?(current_user) || current_user.admin
       redirect_to groups_path
     else
+      @active_goals = @group.active_goals
+      @finished_goals = @group.finished_goals
+
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @group }

@@ -3,6 +3,8 @@
 @import "bootstrap-responsive";
 @import "font-awesome";
 
+$violet: #9d426b;
+
 .page-title{
   .btn, .btn-group{
     float:right;
@@ -43,6 +45,9 @@ form{
 }
 .content{
   padding: 10px;
+  h1,h2,h3,h4{
+    font-family: 'Lobster';
+  }
 }
 
 .group{
@@ -60,3 +65,54 @@ form{
 }
 
 table tr.separator { height: 20px; }
+
+.center{
+  text-align: center;
+}
+
+.goal-users{
+  list-style-type: none;
+  li.user{
+    background: #f8f8f8 image-url("pattern.jpg") left top repeat;
+    -moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.05) inset, 0 -5px 15px 0 rgba(0, 0, 0, 0.05) inset;
+    -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.05) inset, 0 -5px 15px 0 rgba(0, 0, 0, 0.05) inset;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.05) inset, 0 -5px 15px 0 rgba(0, 0, 0, 0.05) inset;
+    border: 2px solid $violet;
+    padding: 10px;
+    margin: 10px 100px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    font-size: 15px;
+    ul{
+      list-style-type: none;
+      margin: 0;
+      li{
+        display: inline-block;
+      }
+      li.link{
+        float: right;
+        margin: 1px;
+        a{
+          background-color: $violet;
+          -webkit-border-radius: 15px;
+          -moz-border-radius: 15px;
+          border-radius: 15px;
+          color: #fff;
+          padding: 7px 10px 7px 5px;
+          &:hover{
+            background-color: #fff;
+            color: $violet;
+          }
+        }
+      }
+      li.name{
+        margin-left:20px;
+      }
+    }
+    i{
+        font-size: 25px;
+        vertical-align: -3px;
+    }
+  }
+}

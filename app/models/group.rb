@@ -5,6 +5,14 @@ class Group < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   after_save :validate_minimum_number_of_users
 
+  def active_goals
+    goals.where(:active => true)
+  end
+
+  def finished_goals
+    goals.where(:active => false)
+  end
+
 private
   def validate_minimum_number_of_users
     if users.count < 1
