@@ -48,7 +48,8 @@
 
 :javascript
   $('table').on('click', 'tr', function() {
+    group_id = "#{@group.id}"
     id = $(this).attr("id");
-    url = "#{goals_url}/"+id;
+    url = "#{groups_url}/"+group_id+"/goals/"+id;
     window.location = url;
   });

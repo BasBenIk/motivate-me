@@ -1,4 +1,5 @@
 class GoalsController < ApplicationController
+  before_filter :get_group
   # GET /goals
   # GET /goals.json
   def index
@@ -45,7 +46,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
-        format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
+        format.html { redirect_to group_goals_path(@group, @goal), notice: 'Goal was successfully created.' }
         format.json { render json: @goal, status: :created, location: @goal }
       else
         format.html { render action: "new" }
@@ -82,3 +83,12 @@ class GoalsController < ApplicationController
     end
   end
 end
+
+private
+  def get_group
+    if params[:goal_id].present?
+      @group = Group.find(params[:id])
+    elsif params[:group_id].present?
+      @group = Group.find(params[:group_id])
+    end
+  end

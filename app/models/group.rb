@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
   attr_accessible :description, :title, :user_ids, :owner
   has_and_belongs_to_many :users
+  has_and_belongs_to_many :goals
   belongs_to :owner, :class_name => "User"
   after_save :validate_minimum_number_of_users
 

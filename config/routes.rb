@@ -7,6 +7,7 @@ MotivateMe::Application.routes.draw do
   resources :friendships
   resources :goals
   resources :groups do
+    resources :goals
     member do
       get :leave
     end
