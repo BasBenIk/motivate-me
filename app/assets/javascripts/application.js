@@ -16,3 +16,8 @@
 //= require bootstrap
 //= require jquery.ui.all
 //= require_tree .
+
+jQuery(function($){
+    //all jQuery code which uses $ needs to be inside here
+  $('input.date_picker').datetimepicker();
+});
