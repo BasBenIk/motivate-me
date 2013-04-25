@@ -14,7 +14,11 @@
       = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
         = f.error_notification
         = display_base_errors resource
-        = f.input :name, :autofocus => true
+        = f.input :username, required: true, hint: 'Je username is permanent!'
+        = f.input :first_name, :required => true
+        = f.input :last_name, :required => true
+        = f.input :gender, collection: [:male, :female]
+        = f.input :date_of_birth, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year]
         = f.input :email, :required => true
         = f.input :password, :required => true
         = f.input :password_confirmation, :required => true

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def goals
     @user = User.find(params[:user_id])
-    @goals = @user.goals
+    @goals = @user.goals.reject{|g| g.expired?}
   end
 
 end
