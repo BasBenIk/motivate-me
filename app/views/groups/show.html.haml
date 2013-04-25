@@ -27,8 +27,8 @@
 .container.content
   .row
     .span12
+      %h2 Actieve Goals:
       - unless @active_goals.empty?
-        %h2 Actieve Goals:
         %table.table
           %tr
             %th Icoon
@@ -50,6 +50,11 @@
               %td= goal.group.try(:title)
             %tr.separator
         %br
+      - else
+        %p
+          Nog geen actieve goals! Klik
+          = link_to "hier", new_group_goal_path(@group)
+          , of hierboven om een nieuwe goal aan te maken.
       - unless @finished_goals.empty?
         %h2 Voltooide Goals:
         %table.table
@@ -61,7 +66,7 @@
             %th Beloning
             %th Groep
 
-          - @active_goals.each do |goal|
+          - @finished_goals.each do |goal|
             %tr{id: "#{goal.id}", class: "group"}
               %td
                 %i.icon-flag

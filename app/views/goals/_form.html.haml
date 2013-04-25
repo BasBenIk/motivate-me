@@ -5,6 +5,19 @@
     = f.input :title
     = f.input :description
     = f.input :reward
+    = f.input :endtime, :wrapper_html => {:id => "datetimepicker", :class => "input-append date"} do
+      / = raise f.object.endtime.strftime("%d-%m-%Y %H:%M:%S").inspect
+      =f.input_field :endtime, as: :string, value: f.object.endtime.present? ? f.object.endtime.strftime("%d-%m-%Y %H:%M:%S") : ""
+      %span.add-on
+        %i{"data-date-icon" => "icon-calendar", "data-time-icon" => "icon-time"}
+
 
   .form-actions
     = f.button :submit, "Goal aanmaken", class: "btn btn-custom"
+
+:javascript
+  $(function() {
+    $('#datetimepicker').datetimepicker({
+      format: 'dd-MM-yyyy hh:mm:ss'
+    });
+  });

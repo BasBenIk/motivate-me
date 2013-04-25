@@ -33,12 +33,18 @@
               %i.icon-thumbs-up
             %h4 Aantal voltooid
             %p= @goal.completions.count
-          - if @goal.active
+          - if @goal.active && !@goal.expired?
             .service.span3
               .icon-awesome
                 %i.icon-time
               %h4 Resterende tijd
-              %p 1:00:00
+              #countDownTimer
+          - elsif @goal.active && @goal.expired?
+            .service.span3
+              .icon-awesome
+                %i.icon-ban-circle
+              %h4 Verlopen op
+              %p= @goal.endtime.strftime("%d %m %Y - %H:%M")
           - else
             .service.span3
               .icon-awesome
@@ -61,7 +67,7 @@
                   %i.icon-ok
               %li.name
                 =link_to user.username, user
-              - unless current_user == user || !@goal.active
+              - unless current_user == user || !@goal.active || @goal.expired?
                 %li.link
                   - unless @goal.complete(user)
                     = link_to completions_path(:user_id => user, :group_id => @group, :goal_id => @goal), :method => :post do
@@ -71,3 +77,23 @@
                     = link_to completion_path(user.completion(@goal), :user_id => user, :group_id => @group, :goal_id => @goal), :method => :delete do
                       %i.icon-minus-sign
                       Goedkeuring intrekken
+
+:javascript
+  $(document).ready(function(){
+    var element = '#countDownTimer';
+    var year = #{@goal.endtime.year};
+    var month = #{@goal.endtime.month}-1;
+    var day = #{@goal.endtime.day};
+    var hour = #{@goal.endtime.hour};
+    var minute = #{@goal.endtime.min};
+    var second = #{@goal.endtime.sec};
+
+    setCountdownTimer(element, year, month, day);
+    function setCountdownTimer(element, year, month, day) {
+      var date = new Date(year, month, day, hour, minute, second);
+      $(element).countdown({until: date, onExpiry: liftOff});
+    }
+    function liftOff (){
+      location.reload();
+    }
+  });
