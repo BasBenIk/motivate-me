@@ -32,18 +32,13 @@
   .portfolio.container
     .portfolio-title
       %h3 Laatste goals
-    .row
+    .row.center
       - @goals.each do |goal|
         .work.span3
-          = image_tag "portfolio/work1.jpg"
           %h4= goal.title
-          %p
-            = goal.description
-          .icon-awesome
-            = link_to image_path("portfolio/work1.jpg"), :rel => "prettyPhoto" do
-              %i.icon-search
-            %a{:href => "portfolio.html"}
-              %i.icon-link
+          %p= goal.description
+          %p Deelnemers: #{goal.users.count}
+
 / Testimonials
 .testimonials.container
   .testimonials-title
