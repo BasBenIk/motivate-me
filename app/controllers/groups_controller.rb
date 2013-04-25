@@ -8,8 +8,6 @@ class GroupsController < ApplicationController
       flash[:error] = "Je kunt je eigen groep niet verlaten"
       redirect_to @group
     else
-        goal.is_complete?
-      end
       @group.users.delete(current_user)
       redirect_to groups_path
     end
