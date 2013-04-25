@@ -4,9 +4,9 @@
     .row
       .span12
         %i.icon-flag.page-title-icon
-        %h2 Nieuwe Goal /
-        %p Stel hieronder een persoonlijk goal samen
-        =link_to goals_path, class: "btn btn-custom" do
+        %h2 #{@group.title} /
+        %p Stel hieronder een nieuw goal samen
+        =link_to @group, class: "btn btn-custom" do
           %i.icon-arrow-left
           =" Terug"
 

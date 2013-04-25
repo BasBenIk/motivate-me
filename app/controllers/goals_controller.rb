@@ -1,4 +1,5 @@
 class GoalsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :get_group
   # GET /goals
   # GET /goals.json
@@ -48,7 +49,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
-        format.html { redirect_to group_goal_path(@group, @goal), notice: 'Goal was successfully created.' }
+        format.html { redirect_to group_goal_path(@group, @goal), notice: 'Goal was successvol aangemaakt.' }
         format.json { render json: @goal, status: :created, location: @goal }
       else
         format.html { render action: "new" }
@@ -64,7 +65,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.update_attributes(params[:goal])
-        format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
+        format.html { redirect_to group_goal_path(@group, @goal), notice: 'Goal was successvol geupdate.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,6 +83,20 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to goals_url }
       format.json { head :no_content }
+    end
+  end
+
+  def reset
+    @goal = Goal.find(params[:id])
+    @goal.completions.each do |completion|
+      completion.destroy
+    end
+    @goal.active = true
+    @goal.completed_on = nil
+    if @goal.save
+      redirect_to group_goal_path(@group, @goal), notice: 'Goal is successvol gereset.'
+    else
+      render action: "edit"
     end
   end
 end

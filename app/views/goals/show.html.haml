@@ -20,24 +20,31 @@
         .row
           .service.span3
             .icon-awesome
-              %i.icon-trophy
-            %h4 Beloning
+              %i.icon-file-alt
+            %h4 Beschrijving
             %p= @goal.description
           .service.span3
             .icon-awesome
-              %i.icon-group
-            %h4 Aantal deelnemers
-            %p=@goal.users.count
+              %i.icon-trophy
+            %h4 Beloning
+            %p= @goal.reward
           .service.span3
             .icon-awesome
               %i.icon-thumbs-up
             %h4 Aantal voltooid
             %p= @goal.completions.count
-          .service.span3
-            .icon-awesome
-              %i.icon-time
-            %h4 Resterende tijd
-            %p 1:00:00
+          - if @goal.active
+            .service.span3
+              .icon-awesome
+                %i.icon-time
+              %h4 Resterende tijd
+              %p 1:00:00
+          - else
+            .service.span3
+              .icon-awesome
+                %i.icon-ok
+              %h4 Voltooid op
+              %p= @goal.completed_on.strftime("%d %m %Y - %H:%M")
 
       %h3 Deelnemers:
   .row
@@ -54,7 +61,7 @@
                   %i.icon-ok
               %li.name
                 =link_to user.username, user
-              - unless current_user == user
+              - unless current_user == user || !@goal.active
                 %li.link
                   - unless @goal.complete(user)
                     = link_to completions_path(:user_id => user, :group_id => @group, :goal_id => @goal), :method => :post do
