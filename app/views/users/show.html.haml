@@ -22,44 +22,58 @@
 / Profile container
 .container.users
   .row
-    .span4
-      %h2 Gebruikersinfo
-      %ul
-        %li
-          %strong Username:
-          - if @user.admin
-            %i.icon-star
-          #{@user.username}
-        %li
-          %strong Email:
-          #{@user.email}
-        %li
-          %strong Voornaam:
-          #{@user.first_name}
-        %li
-          %strong Achternaam:
-          #{@user.last_name}
-        %li
-          %strong Geslacht:
-          #{@user.gender if @user.gender}
-        %li
-          %strong Geboortedatum:
-          #{@user.date_of_birth if @user.date_of_birth}
-    .span4
-      %h2 Vrienden
-      %ul
-        - for friendship in @user.friendships
-          %li
-            = link_to friendship.friend.username, friendship.friend
-            \ -
-            -if current_user == @user
-              (#{link_to "verwijder", friendship, :method => :delete})
-        - if current_user == @user
-          %li
-            %strong= link_to "(Vriend toevoegen)", users_path
-    .span4
-      %h2 Heeft je als vriend
-      %ul
-        - for user in @user.inverse_friends
-          %li=link_to user.username, user
+    .span12.center
+      .what-we-do.container
+        .row
+          .service.span3
+            .icon-awesome
+              %i.icon-flag
+            %h4 Deelgenomen goals
+            %p= @user.goals.count
+          .service.span3
+            .icon-awesome
+              %i.icon-thumbs-up
+            %h4 Aantal voltooid
+            %p= @user.completions.count
+          .service.span3
+            .icon-awesome
+              %i.icon-heart
+            %h4 Vrienden
+            %ul
+              - for friendship in @user.friendships
+                %li= link_to friendship.friend.username, friendship.friend
+              - if current_user == @user
+                %li
+                  %strong= link_to "(Vriend toevoegen)", users_path
+          .service.span3
+            .icon-awesome
+              %i.icon-heart-empty
+            %h4 Andermans vriend
+            %ul
+              - for user in @user.inverse_friends
+                %li=link_to user.username, user
+        .row
+          .service.span12
+            .icon-awesome
+              %i.icon-trophy
+            %h4 Voltooide goals
+            %table.table
+              %tr
+                %th Voltooid op
+                %th Titel
+                %th Groep
 
+              - @user.completions.map{|c| c.goal}.each do |goal|
+                %tr{id: "#{goal.id}", class: "group", "data-group" => "#{goal.group.id}"}
+                  %td
+                    1:00:00
+                  %td= goal.title
+                  %td= goal.group.try(:title)
+
+:javascript
+  $('table').on('click', 'tr', function() {
+    group_id = $(this).attr("data-group");
+    id = $(this).attr("id");
+    url = "#{groups_url}/"+group_id+"/goals/"+id;
+    window.location = url;
+  });
