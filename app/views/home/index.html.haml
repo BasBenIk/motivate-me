@@ -38,9 +38,35 @@
           %h4= goal.title
           %p= goal.description
           %p Deelnemers: #{goal.users.count}
+- else
+  .what-we-do.container.center
+    .portfolio-title
+      %h3 Statistieken
+    .row
+      .service.span3
+        .icon-awesome
+          %i.icon-flag
+        %h4 Aantal goals
+        %p.nice= Goal.all.count
+      .service.span3
+        .icon-awesome
+          %i.icon-thumbs-up
+        %h4 Aantal voltooide goals
+        %p.nice= Completion.all.count
+      .service.span3
+        .icon-awesome
+          %i.icon-user
+        %h4 Aantal gebruikers
+        %p.nice= User.all.count
+      .service.span3
+        .icon-awesome
+          %i.icon-group
+        %h4 Aantal groepen
+        %p.nice= Group.all.count
+
 
 / Testimonials
-.testimonials.container
+.testimonials.container.center
   .testimonials-title
     %h3 Testimonials
   .row

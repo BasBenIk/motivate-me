@@ -29,12 +29,12 @@
             .icon-awesome
               %i.icon-flag
             %h4 Deelgenomen goals
-            %p= @user.goals.count
+            %p.nice= @user.goals.count
           .service.span3
             .icon-awesome
               %i.icon-thumbs-up
             %h4 Aantal voltooid
-            %p= @user.completions.count
+            %p.nice= @user.completions.count
           .service.span3
             .icon-awesome
               %i.icon-heart
