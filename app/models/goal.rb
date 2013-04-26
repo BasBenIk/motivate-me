@@ -7,6 +7,8 @@ class Goal < ActiveRecord::Base
   has_many :completions
   belongs_to :group
 
+  validates :description, :reward, :title, :endtime, presence: true
+
   def complete(user)
     completions.map{|c| c.user == user}.include?(true)
   end

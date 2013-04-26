@@ -5,6 +5,8 @@ class Group < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   after_save :validate_minimum_number_of_users
 
+  validates :description, :title, :user_ids, presence: true
+
   def active_goals
     goals.where(:active => true).reject{|g| g.try(:expired?)}
   end
