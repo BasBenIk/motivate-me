@@ -31,7 +31,6 @@
       - unless @active_goals.empty?
         %table.table
           %tr
-            %th Icoon
             %th Tijd
             %th Titel
             %th Beschrijving
@@ -41,14 +40,24 @@
           - @active_goals.each do |goal|
             %tr{id: "#{goal.id}", class: "group"}
               %td
-                %i.icon-flag
-              %td
-                1:00:00
+                %div{:id => "hidden#{goal.id}"}
               %td= goal.title
               %td= goal.description
               %td= goal.reward
               %td= goal.group.try(:title)
             %tr.separator
+              :javascript
+                $(document).ready(function(){
+                  var year = #{goal.endtime.year};
+                  var month = #{goal.endtime.month}-1;
+                  var day = #{goal.endtime.day};
+                  var hour = #{goal.endtime.hour};
+                  var minute = #{goal.endtime.min};
+                  var second = #{goal.endtime.sec};
+                  var liftoffTime = new Date(year, month, day, hour, minute, second);
+                  $('#hidden#{goal.id}').countdown({until: liftoffTime, format: 'HMS',
+                  layout: '{dn}:{hn}:{mn}:{sn}', onExpiry: liftOff});
+                });
         %br
       - else
         %p
@@ -56,11 +65,10 @@
           = link_to "hier", new_group_goal_path(@group)
           , of hierboven om een nieuwe goal aan te maken.
       - unless @finished_goals.empty?
-        %h2 Voltooide Goals:
+        %h2 Afgelopen Goals:
         %table.table
           %tr
-            %th Icoon
-            %th Tijd
+            %th Voltooid?
             %th Titel
             %th Beschrijving
             %th Beloning
@@ -69,9 +77,10 @@
           - @finished_goals.each do |goal|
             %tr{id: "#{goal.id}", class: "group"}
               %td
-                %i.icon-flag
-              %td
-                1:00:00
+                - unless goal.active
+                  %i.icon-ok
+                - else
+                  %i.icon-remove
               %td= goal.title
               %td= goal.description
               %td= goal.reward
@@ -81,9 +90,12 @@
 
 
 :javascript
-  $('table').on('click', 'tr', function() {
+  $('table').on('click', 'tr.group', function() {
     group_id = "#{@group.id}"
     id = $(this).attr("id");
     url = "#{groups_url}/"+group_id+"/goals/"+id;
     window.location = url;
   });
+  function liftOff (){
+    location.reload();
+  }

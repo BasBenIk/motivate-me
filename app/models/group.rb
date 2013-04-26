@@ -6,11 +6,13 @@ class Group < ActiveRecord::Base
   after_save :validate_minimum_number_of_users
 
   def active_goals
-    goals.where(:active => true).reject{|g| g.expired?}
+    goals.where(:active => true).reject{|g| g.try(:expired?)}
   end
 
   def finished_goals
-    goals.where(:active => false)
+    expired = goals.select{|g| g.expired?}
+    unactive = goals.where(:active => false)
+    goals = expired + unactive
   end
 
 private
