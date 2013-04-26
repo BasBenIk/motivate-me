@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
   end
 
   def finished_goals
-    expired = goals.select{|g| g.expired?}
+    expired = goals.select{|g| g.try(:expired?)}
     unactive = goals.where(:active => false)
     goals = expired + unactive
   end

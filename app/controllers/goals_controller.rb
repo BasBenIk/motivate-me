@@ -5,11 +5,8 @@ class GoalsController < ApplicationController
   # GET /goals.json
   def index
     @goals = Goal.all
-    unless @group.owner == current_user || @group.users.include?(current_user) || current_user.admin
-      redirect_to groups_path
-    else
-      @active_goals = @group.active_goals
-      @finished_goals = @group.finished_goals
+    @active_goals = @group.active_goals
+    @finished_goals = @group.finished_goals
 
       respond_to do |format|
         format.html # index.html.erb
