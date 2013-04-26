@@ -35,7 +35,6 @@
             %th Titel
             %th Beschrijving
             %th Beloning
-            %th Groep
 
           - @active_goals.each do |goal|
             %tr{id: "#{goal.id}", class: "group"}
@@ -44,7 +43,6 @@
               %td= goal.title
               %td= goal.description
               %td= goal.reward
-              %td= goal.group.try(:title)
             %tr.separator
               :javascript
                 $(document).ready(function(){
@@ -72,7 +70,6 @@
             %th Titel
             %th Beschrijving
             %th Beloning
-            %th Groep
 
           - @finished_goals.each do |goal|
             %tr{id: "#{goal.id}", class: "group"}
@@ -84,7 +81,6 @@
               %td= goal.title
               %td= goal.description
               %td= goal.reward
-              %td= goal.group.try(:title)
             %tr.separator
         %br
 
